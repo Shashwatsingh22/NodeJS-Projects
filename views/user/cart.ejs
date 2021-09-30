@@ -1,0 +1,23 @@
+<%- include('../layout/upper.ejs') %>
+</head>
+    <%- include('../layout/nav.ejs') %>
+<main>
+    <h1 align="center"> Cart </h1>
+</main>
+    <% if(prd.length > 0) { %> 
+     <ul>
+         <% prd.forEach(p => { %>
+          <li>
+            <h3>Name : </h3>  <%= p.productData.title %>
+            <h3>Price : </h3>  <%= p.productData.price %>
+            <h3>Qty : </h3> <%= p.qty %>
+          </li>
+        <% }) %>
+        <h3 align="center">Total  Price : <%= prd.totalPrice %></h3>
+     </ul>
+        <% } else { %> 
+          
+            <h1 align="center"> 😢Yet No Product You Like It !!</h1>
+
+        <% } %>  
+<%- include('../layout/lower.ejs') %>

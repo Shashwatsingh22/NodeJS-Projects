@@ -1,0 +1,15 @@
+<%- include('../layout/upper.ejs') %>
+</head>
+    <%- include('../layout/nav.ejs') %>
+<main class = "product.center_Id">
+    <h1> <%= product.title %> </h1>
+    <hr>
+    <div>
+        <img src="<%= product.imgurl %>" alt=" <%= product.title %>" class="imgView">
+    </div>
+    <h2> 💲 <%= product.price %> </h2>
+    <p> <%= product.desc %> </p>
+
+   <%- include('../layout/add-to-cart.ejs', { prdArray : product }) %>
+</main>
+<%- include('../layout/lower.ejs') %>

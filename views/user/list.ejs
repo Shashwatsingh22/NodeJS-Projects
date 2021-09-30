@@ -1,0 +1,36 @@
+<%- include('../layout/upper.ejs') %>
+    </head>
+   <body>
+       <%- include('../layout/nav.ejs') %>
+<h1 align="center"> Welcome to Amazon </h1>
+<h4 align="center">List of Products </h4>
+<main>
+
+     <%if (prdArray.length>0){%>
+        <div class="grid" >
+        <%for (let prd of prdArray){%>
+            <article class="card product-item">
+                <header class="card__header">
+                    <h1 class="product__title"><%= prd.title %></h1>
+                </header>
+                <div>
+                    <img src="<%= prd.imgurl %>" alt="<%= prd.title %>" class="imgView">
+                </div>
+                <div class="card__content">
+                    <h2 class="product__price">$<%= prd.price %></h2>
+                    <p class="product__description"><%= prd.desc %></p>
+                </div>
+                <div class="card__actions">
+                    <a href="/product-detail/<%= prd._id %>" class="btn">🕶Show Detail</a>
+                    
+                    <%- include('../layout/add-to-cart.ejs', {prdArray : prd}) %>
+                </div>
+            </article>
+        
+        <%}%>
+    </div>
+        <%} else {%>
+     <h1 align="center"> 😒 No Products Added Yet !!</h1>
+     <%}%>
+</main>
+<%- include('../layout/lower.ejs') %>
