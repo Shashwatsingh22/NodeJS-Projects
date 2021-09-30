@@ -1,5 +1,6 @@
 const user = require('../models/user');
 const Product = require('../models/product');
+const User = require('../models/user');
 
 exports.getCart = (req, res, next) => {
   Cart.fetchAll(products => {
@@ -20,7 +21,7 @@ exports.postCart = (req,res,next) =>
 {
     const prodID = req.body.ProdID;
     Product.findById(prodID).then(prod => {
-        return req.User.addToCart,
+        return req.addToCart(prod),
         console.log(
           prodID,"=> This is the ID of the Prod\n",
           prod,"=>this Prod add to Cart"
