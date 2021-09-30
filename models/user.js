@@ -32,7 +32,7 @@ class User{
             }
         )*/
 
-        const updateCart = {items : [{...product,qty : 1}]}; 
+        const updateCart = {items : [{...product._id,qty : 1}]}; 
 //Here We Don't Store Complete Data We Just Store the ID so that when we make some change it should reflect at the Cart Too So we Will use the ID only
         const db = getdb();
         db.collection('users').updateOne(
