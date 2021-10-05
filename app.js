@@ -18,7 +18,7 @@ const comController = require('./controller/home');
 const mongoConnect = require('./utils/database').mongoConnect;
 
 //Modles
-const u = require('./models/user');
+//const u = require('./models/user');
 const User = require('./models/user');
 
 app.set('view engine','ejs');
@@ -33,10 +33,13 @@ app.use(express.static(path.join(__dirname,'public')));
 
 app.use((req,res,next)=>
 {
-    u.ufindById('6154772da30bbce3e4986f7f')
+    User.ufindById('6154772da30bbce3e4986f7f')
     .then(result =>
         {
+//Lets Create the User Obj So that we can call any function at the Runtime.            
             req.user = new User(result.name,result.mail,result.cart,result._id);
+            //console.log(result._id);
+            //result;
             //new user(result.name,result.mail,result.cart,result._id);
             //console.log(result);
             next();

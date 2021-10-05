@@ -1,10 +1,9 @@
-const user = require('../models/user');
+//const user = require('../models/user');
 const Product = require('../models/product');
-const User = require('../models/user');
+//const User = require('../models/user');
 
 exports.getCart = (req, res, next) => {
-  Cart.fetchAll(products => {
-
+  req.user.fetchAll(products => {
       res.render('./user/cart', {
         path: '/cart',
         pageTitle: '🛒 Cart',
@@ -20,13 +19,17 @@ exports.getCart = (req, res, next) => {
 exports.postCart = (req,res,next) => 
 {
     const prodID = req.body.ProdID;
+
     Product.findById(prodID).then(prod => {
-        return req.addToCart(prod),
+      //As here we can see that we are able call any function on the Fly due
+      //to the help of that User Obeject
+        return req.user.addToCart(prod),
         console.log(
           prodID,"=> This is the ID of the Prod\n",
           prod,"=>this Prod add to Cart"
-          );
-    }).then(
+          )
+          //res.redirect('/cart')
+        }).then(
         result => {
             console.log(result);       
         }
