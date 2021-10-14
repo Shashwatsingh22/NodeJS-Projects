@@ -3,14 +3,14 @@ const Product = require('../models/product');
 //const User = require('../models/user');
 
 exports.getCart = (req, res, next) => {
-  req.user.fetchAll(products => {
+  req.user.fetchCart().then(products => {
       res.render('./user/cart', {
         path: '/cart',
         pageTitle: '🛒 Cart',
         prd: products
       });
-    });
-
+    }).catch(err=>{console.log(err)});
+    
 };
 
 
@@ -25,13 +25,14 @@ exports.postCart = (req,res,next) =>
       //to the help of that User Obeject
         return req.user.addToCart(prod),
         console.log(
-          prodID,"=> This is the ID of the Prod\n",
-          prod,"=>this Prod add to Cart"
+        //  prodID,"=> This is the ID of the Prod\n",
+         // prod,"=>this Prod add to Cart"
           )
           //res.redirect('/cart')
         }).then(
         result => {
-            console.log(result);       
+            console.log(result);
+            res.redirect('/Cart');      
         }
     )
 }
